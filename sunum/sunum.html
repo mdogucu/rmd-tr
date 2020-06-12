@@ -49,9 +49,6 @@ class: middle
 
 ## Dil Hakkında Not
 
-- Benim Türkçe geçmişim
-
---
 
 - Türkçe terimler
 
@@ -81,7 +78,7 @@ class: center middle
 
 ---
 
---
+
 
 class: middle center
 
@@ -352,7 +349,22 @@ ggplot(yolculuk,
 
 ## Sayı
 
+En son yıl
 
+
+```r
+yolculuk %&gt;% 
+  filter(yil == max(yil)) %&gt;% 
+  select(yil) %&gt;% 
+  pull()
+```
+
+```
+## [1] 2018
+```
+
+
+En son yıldaki yolcu sayısı
 
 
 ```r
@@ -625,7 +637,7 @@ class: middle
 ## Setup (kurulum) kod bloğu
 
 ````markdown
-``{r setup, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 ````
@@ -650,9 +662,9 @@ class: middle
 
 - [R Markdown Kitabı](https://bookdown.org/yihui/rmarkdown/) 
 
-- [RStu]()
+- [RStudio R Markdown dersi](https://rmarkdown.rstudio.com/lesson-1.html)
 
-- [RStudio Hat](https://rstudio.com/resources/cheatsheets/) Türkçe R Markdown cheatsheet var.
+- [RStudio Hatırlatma Notları](https://rstudio.com/resources/cheatsheets/) Türkçe R Markdown cheatsheet var.
 
 - [W3 schools HTML &amp; CSS](https://www.w3schools.com/html/default.asp)
 
@@ -678,10 +690,10 @@ Kaynak: [blogdown kitabı](https://bookdown.org/yihui/blogdown/)
 
 &lt;hr&gt;
 
-Örnek: [https://www.rladiesirvine.org/](https://www.rladiesirvine.org/)
+Örnek: [https://amber.rbind.io/](https://amber.rbind.io/)
 &lt;hr&gt;
 
-Kaynak kodu: https://github.com/rladies-irvine/rladies-irvine.github.io
+Kaynak kodu: https://github.com/ProQuestionAsker/websiteSource
 
 ---
 class: middle
@@ -735,29 +747,11 @@ Kaynak: [GitHub readme](https://github.com/rstudio/rticles)
 
 ---
 
-## Odev 
+class: center middle
 
+## Ödev 
 
-Ek kaynaklar
-
-
-https://mdogucu.ics.uci.edu/teaching/workshops/2020-03-05-intro-tidy/info.html
-
-
-blogdown::new_site()
-
-.left-panel[
-
-```r
-knitr::include_graphics('img/hex-blogdown.png')
-```
-]
-.right-panel[
-
-- Blog veya genel olarak internet sitesi yapımı
-- `blogdown::new_site()` otomatik olarak yenı web sistesi oluşturur.
-- `blogdown::new_site(theme)` otomatik olarak yenı web sistesi oluşturur.
-]
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 496 512"&gt;&lt;path d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm0 432c-101.69 0-184-82.29-184-184 0-101.69 82.29-184 184-184 101.69 0 184 82.29 184 184 0 101.69-82.29 184-184 184zm0-312c-70.69 0-128 57.31-128 128s57.31 128 128 128 128-57.31 128-128-57.31-128-128-128zm0 192c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64z"/&gt;&lt;/svg&gt; R Markdown ile daha fazla Türkçe kaynaklar oluşturalım.
 
 
 ---

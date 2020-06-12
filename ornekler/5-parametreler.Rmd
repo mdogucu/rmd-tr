@@ -4,7 +4,7 @@ author: "Mine Dogucu"
 date: "2020-06-12"
 output: html_document
 params: 
-  yil: "2018"
+  yil: "2017"
 ---
 
 

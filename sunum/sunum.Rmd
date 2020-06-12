@@ -58,9 +58,6 @@ class: middle
 
 ## Dil Hakkında Not
 
-- Benim Türkçe geçmişim
-
---
 
 - Türkçe terimler
 
@@ -90,7 +87,7 @@ class: center middle
 
 ---
 
---
+
 
 class: middle center
 
@@ -360,7 +357,17 @@ ggplot(yolculuk, aes(x = yil, y = m1_hatti)) +
 
 ## Sayı
 
+En son yıl
 
+```{r}
+yolculuk %>% 
+  filter(yil == max(yil)) %>% 
+  select(yil) %>% 
+  pull()
+```
+
+
+En son yıldaki yolcu sayısı
 
 ```{r fig.height=6, fig.width=9}
 yolculuk %>% 
@@ -637,7 +644,7 @@ class: middle
 ## Setup (kurulum) kod bloğu
 
 ````markdown
-`r ''```{r setup, include=FALSE}
+`r ''````{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 ````
@@ -662,9 +669,9 @@ class: middle
 
 - [R Markdown Kitabı](https://bookdown.org/yihui/rmarkdown/) 
 
-- [RStu]()
+- [RStudio R Markdown dersi](https://rmarkdown.rstudio.com/lesson-1.html)
 
-- [RStudio Hat](https://rstudio.com/resources/cheatsheets/) Türkçe R Markdown cheatsheet var.
+- [RStudio Hatırlatma Notları](https://rstudio.com/resources/cheatsheets/) Türkçe R Markdown cheatsheet var.
 
 - [W3 schools HTML & CSS](https://www.w3schools.com/html/default.asp)
 
@@ -690,10 +697,10 @@ Kaynak: [blogdown kitabı](https://bookdown.org/yihui/blogdown/)
 
 <hr>
 
-Örnek: [https://www.rladiesirvine.org/](https://www.rladiesirvine.org/)
+Örnek: [https://amber.rbind.io/](https://amber.rbind.io/)
 <hr>
 
-Kaynak kodu: https://github.com/rladies-irvine/rladies-irvine.github.io
+Kaynak kodu: https://github.com/ProQuestionAsker/websiteSource
 
 ---
 class: middle
@@ -747,28 +754,11 @@ Kaynak: [GitHub readme](https://github.com/rstudio/rticles)
 
 ---
 
-## Odev 
+class: center middle
 
+## Ödev 
 
-Ek kaynaklar
-
-
-https://mdogucu.ics.uci.edu/teaching/workshops/2020-03-05-intro-tidy/info.html
-
-
-blogdown::new_site()
-
-.left-panel[
-```{r eval = FALSE}
-knitr::include_graphics('img/hex-blogdown.png')
-```
-]
-.right-panel[
-
-- Blog veya genel olarak internet sitesi yapımı
-- `blogdown::new_site()` otomatik olarak yenı web sistesi oluşturur.
-- `blogdown::new_site(theme)` otomatik olarak yenı web sistesi oluşturur.
-]
+`r fontawesome::fa(name = "bullseye", fill = "#7b7043")` R Markdown ile daha fazla Türkçe kaynaklar oluşturalım.
 
 
 ---
