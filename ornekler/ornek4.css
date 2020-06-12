@@ -1,0 +1,17 @@
+
+/*h2 - header 2 - alt başlık*/
+
+h2 {
+  color:red;
+  font-size:25px;
+}
+
+/*a - anchor */
+a {
+  color:green;
+}
+
+.ozel-not{
+  font-size: 14px;
+  background: lightgray;
+}

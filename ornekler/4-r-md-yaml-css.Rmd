@@ -1,0 +1,83 @@
+---
+title: "M1 hattı raporu"
+author: "Mine Dogucu"
+date: "2020-06-12"
+output: 
+  html_document:
+    css: ornek4.css
+---
+
+
+```{r echo = FALSE, message = FALSE, include=FALSE}
+library(tidyverse)
+options(scipen=10000) 
+Sys.setlocale(category = "LC_ALL", locale = "Turkish")
+yolculuk <- read_csv(here::here("veri/yolculuk.csv"))
+```
+
+## M1 hattı hakkında genel bilgiler
+
+M1A ve M1B hatlarından oluşan İstanbul Metro M1 hattı 1989'dan beri hizmet vermektedir.[^1] 
+
+[^1]: Vikipedi'ye göre hat ilk açıldığı zaman Aksaray-Kocatepe arasında hizmet vermekteydi.
+
+
+### Duraklar 
+
+[Metro İstanbul](https://www.metro.istanbul/YolcuHizmetleri/AgHaritalari)'un ağ 
+haritalarına göre **M1A** hattında aşağıdaki duraklar yer alır.
+
+
+1. Yenikapı 	
+1. Aksaray 	
+1. Emniyet ‐ Fatih 		
+1. Topkapı ‐ Ulubatlı
+1. Bayrampaşa ‐ Maltepe 	
+1. Sağmalcılar 		
+1. Kocatepe 		
+1. Otogar 	
+1. Terazidere 		
+1. Davutpaşa ‐ YTÜ 
+1. Merter 	
+1. Zeytinburnu 	
+1. Bakırköy ‐ İncirli 	
+1. Bahçelievler 	
+1. Ataköy ‐ Şirinevler 
+1. Yenibosna 	
+1. DTM ‐ İstanbul Fuar Merkezi 
+1. Atatürk Havalimanı 
+
+
+### Yolcu sayısına yakından bakış
+
+
+```{r}
+ggplot(yolculuk, 
+       aes(x = yil, y = m1_hatti)) +
+  geom_line() +
+  labs(x = "Yıl",
+       y = "M1 hattı yolcu sayısı")
+
+```
+
+
+```{r echo = FALSE}
+en_son_sayi <- yolculuk %>% 
+  filter(yil == max(yil)) %>% 
+  select(m1_hatti) %>% 
+  pull()
+```
+
+```{r echo = FALSE}
+en_son_yil <- yolculuk %>% 
+  filter(yil == max(yil)) %>% 
+  select(yil) %>% 
+  pull()
+```
+
+M1 hattına dair en son veri `r en_son_yil` yılına aittir. Bu yılda toplam `r en_son_sayi` yolcu M1 hattı ile seyahat etmiştir.
+
+
+#### Not {.ozel-not}
+
+Bu bilgiler eğitim amaçlıdır. İstanbul metro ile ilgili herhangi bir amaç içermemektedir.

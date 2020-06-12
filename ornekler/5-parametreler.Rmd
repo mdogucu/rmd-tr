@@ -1,0 +1,28 @@
+---
+title: "M1 hattı raporu"
+author: "Mine Dogucu"
+date: "2020-06-12"
+output: html_document
+params: 
+  yil: "2018"
+---
+
+
+```{r echo = FALSE, message = FALSE, include=FALSE}
+library(tidyverse)
+options(scipen=10000) 
+yolculuk <- read_csv(here::here("veri/yolculuk.csv"))
+```
+
+
+```{r echo = FALSE}
+sayi <- yolculuk %>% 
+  filter(yil == params$yil) %>% 
+  select(m1_hatti) %>% 
+  pull()
+```
+
+
+`r params$yil` yılında toplam `r sayi` yolcu M1 hattı ile seyahat etmiştir.
+
+
