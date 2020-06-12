@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Sen de yaz yaz yaz R Markdown ile her istediğini</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mine Doğucu" />
+    <meta name="date" content="2020-06-12" />
+    <link rel="stylesheet" href="sunum-stil.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Sen de yaz yaz yaz R Markdown ile her istediğini
+## R Ladies Ankara, Eskişehir ve İstanbul
+### Mine Doğucu
+### 2020-06-12
+
+---
+
+
+layout: true
+
+&lt;!-- Bu dosya Mine Doğucu tarafından Atıf-GayriTicari-AynıLisanslaPaylaş 4.0 Uluslararası lisansı ile lisanslıdır. Lisans hakkında daha fazla bilgi için: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.tr --&gt;
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ CC BY-NC-SA 4.0 &lt;a href="https://mdogucu.ics.uci.edu"&gt;Mine Doğucu&lt;/a&gt;&lt;/div&gt; 
+
+---
+class: center, middle
+
+
+
+
+
+## Kamu Lisansı
+
+&lt;img src="img/cc-sa.png" width="100%" /&gt;
+
+
+Lisans hakkında daha fazla bilgiyi [burada](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.tr) bulabilirsiniz.
+
+
+---
+
+class: middle
+
+## Dil Hakkında Not
+
+- Benim Türkçe geçmişim
+
+--
+
+- Türkçe terimler
+
+---
+
+class: center middle
+
+## &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 640 512"&gt;&lt;path d="M434.7 64h-85.9c-8 0-15.7 3-21.6 8.4l-98.3 90c-.1.1-.2.3-.3.4-16.6 15.6-16.3 40.5-2.1 56 12.7 13.9 39.4 17.6 56.1 2.7.1-.1.3-.1.4-.2l79.9-73.2c6.5-5.9 16.7-5.5 22.6 1 6 6.5 5.5 16.6-1 22.6l-26.1 23.9L504 313.8c2.9 2.4 5.5 5 7.9 7.7V128l-54.6-54.6c-5.9-6-14.1-9.4-22.6-9.4zM544 128.2v223.9c0 17.7 14.3 32 32 32h64V128.2h-96zm48 223.9c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zM0 384h64c17.7 0 32-14.3 32-32V128.2H0V384zm48-63.9c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16c0-8.9 7.2-16 16-16zm435.9 18.6L334.6 217.5l-30 27.5c-29.7 27.1-75.2 24.5-101.7-4.4-26.9-29.4-24.8-74.9 4.4-101.7L289.1 64h-83.8c-8.5 0-16.6 3.4-22.6 9.4L128 128v223.9h18.3l90.5 81.9c27.4 22.3 67.7 18.1 90-9.3l.2-.2 17.9 15.5c15.9 13 39.4 10.5 52.3-5.4l31.4-38.6 5.4 4.4c13.7 11.1 33.9 9.1 45-4.7l9.5-11.7c11.2-13.8 9.1-33.9-4.6-45.1z"/&gt;&lt;/svg&gt;: Ben
+
+
+
+
+
+.large[&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 640 512"&gt;&lt;path d="M208 352c-2.39 0-4.78.35-7.06 1.09C187.98 357.3 174.35 360 160 360c-14.35 0-27.98-2.7-40.95-6.91-2.28-.74-4.66-1.09-7.05-1.09C49.94 352-.33 402.48 0 464.62.14 490.88 21.73 512 48 512h224c26.27 0 47.86-21.12 48-47.38.33-62.14-49.94-112.62-112-112.62zm-48-32c53.02 0 96-42.98 96-96s-42.98-96-96-96-96 42.98-96 96 42.98 96 96 96zM592 0H208c-26.47 0-48 22.25-48 49.59V96c23.42 0 45.1 6.78 64 17.8V64h352v288h-64v-64H384v64h-76.24c19.1 16.69 33.12 38.73 39.69 64H592c26.47 0 48-22.25 48-49.59V49.59C640 22.25 618.47 0 592 0z"/&gt;&lt;/svg&gt;] 
+
+
+--
+
+.large[&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt;] &lt;a href = "http://twitter.com/MineDogucu"&gt;MineDogucu&lt;/a&gt;
+
+--
+
+
+.large[&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 448 512"&gt;&lt;path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/&gt;&lt;/svg&gt;] &lt;a href = "http://mdogucu.ics.uci.edu/teaching/stats115-wi20/main.html"&gt;Bayes İstatistiği Dersi&lt;/a&gt;
+
+
+
+---
+
+--
+
+class: middle center
+
+## &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 640 512"&gt;&lt;path d="M434.7 64h-85.9c-8 0-15.7 3-21.6 8.4l-98.3 90c-.1.1-.2.3-.3.4-16.6 15.6-16.3 40.5-2.1 56 12.7 13.9 39.4 17.6 56.1 2.7.1-.1.3-.1.4-.2l79.9-73.2c6.5-5.9 16.7-5.5 22.6 1 6 6.5 5.5 16.6-1 22.6l-26.1 23.9L504 313.8c2.9 2.4 5.5 5 7.9 7.7V128l-54.6-54.6c-5.9-6-14.1-9.4-22.6-9.4zM544 128.2v223.9c0 17.7 14.3 32 32 32h64V128.2h-96zm48 223.9c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zM0 384h64c17.7 0 32-14.3 32-32V128.2H0V384zm48-63.9c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16c0-8.9 7.2-16 16-16zm435.9 18.6L334.6 217.5l-30 27.5c-29.7 27.1-75.2 24.5-101.7-4.4-26.9-29.4-24.8-74.9 4.4-101.7L289.1 64h-83.8c-8.5 0-16.6 3.4-22.6 9.4L128 128v223.9h18.3l90.5 81.9c27.4 22.3 67.7 18.1 90-9.3l.2-.2 17.9 15.5c15.9 13 39.4 10.5 52.3-5.4l31.4-38.6 5.4 4.4c13.7 11.1 33.9 9.1 45-4.7l9.5-11.7c11.2-13.8 9.1-33.9-4.6-45.1z"/&gt;&lt;/svg&gt;: Siz
+
+
+.large[&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 384 512"&gt;&lt;path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/&gt;&lt;/svg&gt;] 
+
+--
+
+.large[&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;] 
+
+--
+
+
+.large[&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#88398a;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;] 
+
+
+
+
+
+
+
+---
+
+class: middle
+
+## Markup (Biçimleme) Dilleri
+
+
+"Mark up" düzeltme veya açıklama amacıyla bir kağıdın üzerine not düşme 
+
+
+.footnote[çeviri: tureng]
+
+
+---
+class: sub-topic center middle
+
+.sub-topic-note[Biçimleme Dillerine Örnekler]
+
+---
+
+class: middle
+
+
+## LaTeX
+
+
+&lt;br&gt;
+
+
+.pull-left[
+
+```r
+$\frac{3}{5}$
+```
+]
+
+.pull-right[
+
+`\(\frac{3}{5}\)`
+
+]
+
+---
+
+
+class: middle
+
+## HTML (Hypertext Markup Language)
+
+&lt;br&gt;
+
+
+.pull-left[
+
+
+```r
+&lt;a href = "http://minedogucu.com"&gt;
+  Mine Doğucu&lt;/a&gt;
+```
+]
+
+.pull-right[
+
+&lt;a href = "http://minedogucu.com"&gt;Mine Doğucu&lt;/a&gt;
+
+]
+
+---
+
+class: middle
+
+
+## markdown &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 640 512"&gt;&lt;path d="M593.8 59.1H46.2C20.7 59.1 0 79.8 0 105.2v301.5c0 25.5 20.7 46.2 46.2 46.2h547.7c25.5 0 46.2-20.7 46.1-46.1V105.2c0-25.4-20.7-46.1-46.2-46.1zM338.5 360.6H277v-120l-61.5 76.9-61.5-76.9v120H92.3V151.4h61.5l61.5 76.9 61.5-76.9h61.5v209.2zm135.3 3.1L381.5 256H443V151.4h61.5V256H566z"/&gt;&lt;/svg&gt;
+
+&lt;br&gt;
+
+
+.pull-left[
+
+
+
+
+```r
+[Mine Doğucu](http://minedogucu.com)
+```
+]
+
+.pull-right[
+
+[Mine Doğucu](http://minedogucu.com)
+]
+
+---
+
+class: subtopic center middle
+
+.sub-topic-note[.strike[R] Markdown]
+
+
+
+---
+
+class: center middle
+
+.pull-left[
+
+
+```r
+[Mine Doğucu](http://minedogucu.com)
+```
+]
+
+.pull-right[
+
+[Mine Doğucu](http://minedogucu.com)
+]
+
+---
+
+## Başlıklar
+
+
+.pull-left[
+
+
+```r
+# Başlık
+
+
+
+
+
+## Alt Başlık
+
+
+
+### Alt-Alt Başlık
+
+
+#### Alt-Alt-Alt Başlık
+```
+]
+
+.pull-right[
+# Başlık
+## Alt Başlık
+### Alt-Alt Başlık
+#### Alt-Alt-Alt Başlık
+]
+---
+
+
+
+## Vurgulama
+
+
+.pull-left[
+
+
+```r
+_Merhaba Dünya_ 
+
+
+__Merhaba Dünya__
+
+
+~~Merhaba Dünya~~ 
+```
+]
+
+.pull-right[
+
+_Merhaba Dünya_   
+
+__Merhaba Dünya__ 
+
+~~Merhaba Dünya~~ 
+]
+---
+
+class: subtopic center middle
+
+.sub-topic-note[R .strike[Markdown]]
+
+
+
+---
+
+&lt;img src="img/metro.jpg" width="30%" style="display: block; margin: auto;" /&gt;
+
+
+
+.footnote[Fotoğrafın  (CC BY 2.0) lisansı [t-mizo](https://www.flickr.com/photos/tmizo/7622107930/in/photolist-cBxi8Y-MUWrm-baLoXt-s1xpCk-AecPrJ-a3xdzR-2KMoC-dYSfc3-6ccgek-a3A5eN-AcDqUP-9tt9mD-aACVoF-5jfgYH-5ohiY-9QfYh7-9tt9ue-fcyRqm-Jf9TX-aKinvc-Jf9Ti-5SFHBs-vf9J8y-BDTGX3-TGaxZw-am9SZ-bCdVaU-hYdMq5-g7Qwo-5t3fuP-NfKcx-4uD2q-99DYLL-TErGso-9tt9Br-pNHD5R-bo5RRN-mx5dHp-5QXXGy-a2CznS-xwVX1g-2h6Aix8-6dUJVB-gQAbw-2h6AiuT-5MmoJC-7mULDr-CoPCTG-aFCEpk-NfK9S)'ya aittir.]
+
+
+
+---
+
+## Veri
+
+
+
+
+```r
+yolculuk
+```
+
+```
+## # A tibble: 30 x 2
+##      yil m1_hatti
+##    &lt;dbl&gt;    &lt;dbl&gt;
+##  1  1989   993742
+##  2  1990 11659369
+##  3  1991 15336734
+##  4  1992 17991036
+##  5  1993 14068062
+##  6  1994 23336883
+##  7  1995 34042320
+##  8  1996 45400191
+##  9  1997 54099681
+## 10  1998 56906437
+## # ... with 20 more rows
+```
+
+.footnote[Veriler İstanbul Büyükşehir Belediyesi'nin [Açık Veri Portalından](https://data.ibb.gov.tr/dataset/eca4249d-74e6-41ba-b5d0-9627b4c83f9d/resource/d83e94d3-1b28-4c88-9d62-61502c28ea4c/download/rayl-sistemler-hat-bazl-yolculuk-saylar.xlsx) indirilmiştir.]
+---
+
+## Figure (Şekil)
+
+.left-panel[
+
+```r
+ggplot(yolculuk, 
+       aes(x = yil, 
+           y = m1_hatti)) +
+  geom_line()
+```
+]
+.right-panel[
+
+![](sunum_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Sayı
+
+
+
+
+```r
+yolculuk %&gt;% 
+  filter(yil == max(yil)) %&gt;% 
+  select(m1_hatti) %&gt;% 
+  pull()
+```
+
+```
+## [1] 155943047
+```
+
+
+---
+
+## Analiz Sonrası
+
+- Rapor, makale veya yazı yazma
+
+--
+
+- Web sayfası oluşturma
+
+--
+
+
+- Sunum yapma
+
+
+
+
+---
+
+
+## Programlama + Biçimleme (Ayrı Ayrı)
+
+Yöntem:
+
+&lt;table align = "center"&gt;
+
+&lt;tr style="font-size:28px"&gt;
+
+&lt;td&gt; .large[R'da analiz] &lt;br&gt; &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;&lt;/td&gt;
+&lt;td&gt; .large[Biçimleme] &lt;br&gt; &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 512 512"&gt;&lt;path d="M16 288c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h112v-64zm489-183L407.1 7c-4.5-4.5-10.6-7-17-7H384v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H152c-13.3 0-24 10.7-24 24v264h128v-65.2c0-14.3 17.3-21.4 27.4-11.3L379 308c6.6 6.7 6.6 17.4 0 24l-95.7 96.4c-10.1 10.1-27.4 3-27.4-11.3V352H128v136c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H376c-13.2 0-24-10.8-24-24z"/&gt;&lt;/svg&gt; 
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 384 512"&gt;&lt;path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm57.1 120H305c7.7 0 13.4 7.1 11.7 14.7l-38 168c-1.2 5.5-6.1 9.3-11.7 9.3h-38c-5.5 0-10.3-3.8-11.6-9.1-25.8-103.5-20.8-81.2-25.6-110.5h-.5c-1.1 14.3-2.4 17.4-25.6 110.5-1.3 5.3-6.1 9.1-11.6 9.1H117c-5.6 0-10.5-3.9-11.7-9.4l-37.8-168c-1.7-7.5 4-14.6 11.7-14.6h24.5c5.7 0 10.7 4 11.8 9.7 15.6 78 20.1 109.5 21 122.2 1.6-10.2 7.3-32.7 29.4-122.7 1.3-5.4 6.1-9.1 11.7-9.1h29.1c5.6 0 10.4 3.8 11.7 9.2 24 100.4 28.8 124 29.6 129.4-.2-11.2-2.6-17.8 21.6-129.2 1-5.6 5.9-9.5 11.5-9.5zM384 121.9v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/&gt;&lt;/svg&gt; 
+ 
+&lt;/td&gt;
+
+
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+--
+
+Sorunlar:
+
+- hata yapmaya açık
+
+--
+
+- tekrarlanabilme daha zor.
+
+---
+
+
+## Programlama + Biçimleme (Birlikte)
+
+&lt;table align = "center"&gt;
+
+&lt;tr style="font-size:28px"&gt;
+
+&lt;td&gt; .large[R'da analiz]  &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 581 512"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt; 
+ve 
+.large[Markdown'da biçimlendirme] &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 640 512"&gt;&lt;path d="M593.8 59.1H46.2C20.7 59.1 0 79.8 0 105.2v301.5c0 25.5 20.7 46.2 46.2 46.2h547.7c25.5 0 46.2-20.7 46.1-46.1V105.2c0-25.4-20.7-46.1-46.2-46.1zM338.5 360.6H277v-120l-61.5 76.9-61.5-76.9v120H92.3V151.4h61.5l61.5 76.9 61.5-76.9h61.5v209.2zm135.3 3.1L381.5 256H443V151.4h61.5V256H566z"/&gt;&lt;/svg&gt;&lt;/td&gt;
+
+&lt;/td&gt;
+
+
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+--
+
+&lt;br&gt;
+&lt;br&gt;
+
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+&lt;th&gt;Dosya türü&lt;/th&gt;
+&lt;th&gt;Dosya adı uzantısı  &lt;/th&gt;
+&lt;/thead&gt;
+
+&lt;tr style="font-size:28px"&gt;
+&lt;td&gt;R &lt;/td&gt;
+&lt;td&gt;.R&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style="font-size:28px"&gt;
+&lt;td&gt;markdown &lt;/td&gt;
+&lt;td&gt;.md&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style="font-size:28px"&gt;
+&lt;td&gt;R Markdown &lt;/td&gt;
+&lt;td&gt;.Rmd&lt;/td&gt;
+
+&lt;/table&gt;
+
+---
+
+class: center middle
+
+## Demo
+
+.large[usethis::use_course("mdogucu/rmd-tr")]
+
+---
+
+class: sub-topic center middle
+
+.sub-topic-note[Hatırlatmalar]
+
+
+---
+
+class: middle
+
+## Demo - Yeni Dosya
+
+- Yeni bir R Markdown dosyası başlatmak için File &gt; New File &gt; R Markdown kullanılabilir.
+
+
+
+---
+class: middle
+
+## Demo - Knitting (İşlemek)
+
+- Kayıtlı R Markdown dosyasını işlemek için Knit tuşu veya Ctrl/Command + Shift + K kısa yolu kullanılabilir.
+
+&lt;img src="img/knit.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+## Demo - Kod bloğu eklemek
+
+- Kod bloğu eklemek için Insert R tuşu veya Ctrl + Alt + I / Cmd + Option + I kısa yolu kullanılabilir.
+
+&lt;img src="img/code-chunk.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+## Demo - Kod bloğunu çalıştırmak
+
+&lt;img src="img/run-code.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Demo - R Markdown dosyasının farklı parçaları
+
+
+&lt;img src="img/rmd-parts.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: sub-topic center middle
+
+.sub-topic-note[Örnekler - DEMO]
+
+---
+
+
+
+
+class: sub-topic center middle
+
+.sub-topic-note[Kısa notlar]
+
+---
+
+class: middle
+
+## markdown
+
+- Github'da README.md dosyaları markdown dosyası
+
+- [markdown hatırlatıcı notlar](https://www.markdownguide.org/cheat-sheet/)
+
+- [markdown tablo oluşturucu](https://www.tablesgenerator.com/markdown_tables).
+
+---
+
+## Kod bloğu seçenekleri
+
+Örnek: `echo = FALSE, message = TRUE`
+
+&lt;table align = "center"&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt;echo = FALSE&lt;/td&gt;
+&lt;td&gt;kodun gizlenmesini sağlar.&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt;message = FALSE&lt;/td&gt;
+&lt;td&gt;mesajın gizlenmesini sağlar&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt;warning = FALSE&lt;/td&gt;
+&lt;td&gt;uyarıların gizlenmesini sağlar.&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt;error = FALSE&lt;/td&gt;
+&lt;td&gt;hatalara rağmen dosyanın işlenmesini sağlar.&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt;eval = FALSE&lt;/td&gt;
+&lt;td&gt;kodu çalıştırmadan dosyanın işlenmesini sağlar.&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt; cache = TRUE&lt;/td&gt;
+&lt;td&gt;kodun çalışmadan en son önbellekteki halini almaya yarar.&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;/table&gt;
+ 
+
+---
+class: middle
+
+
+## Kod bloklarını isimlendirme
+
+
+````markdown
+```{r artis-grafigi}
+ggplot(yolculuk, 
+       aes(x = yil, 
+           y = m1_hatti)) +
+  geom_line()
+```
+````
+
+
+---
+
+class: middle
+
+## Setup (kurulum) kod bloğu
+
+````markdown
+``{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+````
+
+---
+
+## YAML
+
+YAML - Yet Another Mark up Language - Bir Başka Biçimleme Dili
+
+
+- themes: cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, ve yeti
+
+- styles: tango, pygments, kate, monochrome, espresso, zenburn, haddock, breezedark, ve textmate
+
+
+---
+
+class: middle
+
+## Kaynaklar
+
+- [R Markdown Kitabı](https://bookdown.org/yihui/rmarkdown/) 
+
+- [RStu]()
+
+- [RStudio Hat](https://rstudio.com/resources/cheatsheets/) Türkçe R Markdown cheatsheet var.
+
+- [W3 schools HTML &amp; CSS](https://www.w3schools.com/html/default.asp)
+
+
+
+---
+
+
+class: sub-topic center middle
+
+.sub-topic-note[RMarkdown ailesi]
+
+
+---
+
+## blogdown
+
+Amaç: Web sitesi oluşturmak
+
+&lt;hr&gt;
+
+Kaynak: [blogdown kitabı](https://bookdown.org/yihui/blogdown/)
+
+&lt;hr&gt;
+
+Örnek: [https://www.rladiesirvine.org/](https://www.rladiesirvine.org/)
+&lt;hr&gt;
+
+Kaynak kodu: https://github.com/rladies-irvine/rladies-irvine.github.io
+
+---
+class: middle
+
+## bookdown
+
+Amaç: Kitap yazmak
+
+&lt;hr&gt;
+
+Kaynak: [bookdown kitabı](https://bookdown.org/yihui/bookdown/)
+
+&lt;hr&gt;
+
+Örnek ve kaynak kodu: [Bookdown örnekleri](https://bookdown.org/)
+&lt;hr&gt;
+
+---
+class: middle
+
+## xaringan
+
+Amaç: Daha farklı sunumlar yapma
+
+&lt;hr&gt;
+
+Kaynak: [R Markdown kitabı 7. bölüm](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+
+&lt;hr&gt;
+
+Örnek ve kaynak kodu: [Bu sunum](https://github.com/mdogucu/rmd-tr)
+&lt;hr&gt;
+
+
+---
+class: middle
+
+## rticles
+
+
+Amaç: LaTeX destekli makale yazımı
+
+&lt;hr&gt;
+
+Kaynak: [GitHub readme](https://github.com/rstudio/rticles)
+
+&lt;hr&gt;
+
+Örnek ve kaynak kodu: [İstatistik ve Veri Bilimi Eğitiminde Veri Kazıma: Zorluklar ve Fırsatlar](https://github.com/mdogucu/web-scrape)
+&lt;hr&gt;
+
+---
+
+## Odev 
+
+
+Ek kaynaklar
+
+
+https://mdogucu.ics.uci.edu/teaching/workshops/2020-03-05-intro-tidy/info.html
+
+
+blogdown::new_site()
+
+.left-panel[
+
+```r
+knitr::include_graphics('img/hex-blogdown.png')
+```
+]
+.right-panel[
+
+- Blog veya genel olarak internet sitesi yapımı
+- `blogdown::new_site()` otomatik olarak yenı web sistesi oluşturur.
+- `blogdown::new_site(theme)` otomatik olarak yenı web sistesi oluşturur.
+]
+
+
+---
+
+class: center middle 
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 512 512"&gt;&lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/&gt;&lt;/svg&gt; mdogucu@uci.edu
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; MineDogucu
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 496 512"&gt;&lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/&gt;&lt;/svg&gt; mdogucu
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#7b7043;" viewBox="0 0 512 512"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;[github.com/mdogucu/rmd-tr](https://github.com/mdogucu/rmd-tr)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "<div class=\"progress-bar-container\">   <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">   </div> </div>`"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
