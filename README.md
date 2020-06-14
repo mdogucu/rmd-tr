@@ -12,4 +12,4 @@ Mine Dogucu, University of California Irvine
 [https://twitter.com/MineDogucu](https://twitter.com/MineDogucu)
 
 
-Bu repoda workshopun [örneklerini](https://github.com/mdogucu/rmd-tr/tree/master/ornekler) ve [sunumunu](https://mdogucu.github.io/rmd-tr/sunum/sunum.html#1) bulabilirsiniz. 
+Bu repoda workshopun [örneklerini](https://github.com/mdogucu/rmd-tr/tree/master/ornekler) ve [sunumunu](https://mdogucu.github.io/rmd-tr/sunum/sunum.html#1) bulabilirsiniz. Sunumu [YouTube](https://www.youtube.com/watch?v=ykmoy3AO_qI&feature=youtu.be)'dan izleyebilirsiniz.
