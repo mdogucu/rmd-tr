@@ -355,7 +355,6 @@ ggplot(yolculuk, aes(x = yil, y = m1_hatti)) +
 
 ---
 
-## Sayı
 
 En son yıl
 
@@ -682,7 +681,7 @@ class: middle
 
 class: sub-topic center middle
 
-.sub-topic-note[RMarkdown ailesi]
+.sub-topic-note[R Markdown ailesi]
 
 
 ---
